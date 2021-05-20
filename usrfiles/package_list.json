@@ -3,13 +3,11 @@
         "spark": {
             "version": "0.0.0",
             "source": "github.com/HUSKI3/Spark",
-            "author": "HUSKI3",
             "depends": "none"
         },
         "shard": {
             "version": "0.0.0",
             "source": "github.com/RocKing1001/Shard",
-            "author": "ThePiGuy",
             "depends": "spark"
         }
     }
