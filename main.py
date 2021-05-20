@@ -5,6 +5,7 @@ import json
 
 class colors:
     GREEN_SUCCESS = '\033[1;32;40m'
+    RED_FAILURE = '\033[1;31;40m'
     RESET = '\033[0;0;0m'
 
 
@@ -14,6 +15,8 @@ def doStuff(package):
 
     if package in data['packages']:
         print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET + " Dependencies: {}".format(data['packages'][package]["depends"]))
+    else:
+        print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET + " The package you searched for is not present")
     
 
 def main(args):
