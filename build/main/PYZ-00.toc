@@ -1,4 +1,4 @@
-('/home/thepiguy/shard/build/main/PYZ-00.pyz',
+('/home/thepiguy/shard/shard/build/main/PYZ-00.pyz',
  [('multiprocessing.popen_spawn_posix',
    '/usr/lib/python3.8/multiprocessing/popen_spawn_posix.py',
    'PYMODULE'),
@@ -20,7 +20,6 @@
    '/usr/lib/python3.8/importlib/machinery.py',
    'PYMODULE'),
   ('importlib', '/usr/lib/python3.8/importlib/__init__.py', 'PYMODULE'),
-  ('importlib.abc', '/usr/lib/python3.8/importlib/abc.py', 'PYMODULE'),
   ('importlib._bootstrap',
    '/usr/lib/python3.8/importlib/_bootstrap.py',
    'PYMODULE'),
@@ -30,6 +29,7 @@
   ('importlib.metadata',
    '/usr/lib/python3.8/importlib/metadata.py',
    'PYMODULE'),
+  ('importlib.abc', '/usr/lib/python3.8/importlib/abc.py', 'PYMODULE'),
   ('configparser', '/usr/lib/python3.8/configparser.py', 'PYMODULE'),
   ('pathlib', '/usr/lib/python3.8/pathlib.py', 'PYMODULE'),
   ('urllib.parse', '/usr/lib/python3.8/urllib/parse.py', 'PYMODULE'),
@@ -344,4 +344,8 @@
   ('os', '/usr/lib/python3.8/os.py', 'PYMODULE'),
   ('_py_abc', '/usr/lib/python3.8/_py_abc.py', 'PYMODULE'),
   ('tracemalloc', '/usr/lib/python3.8/tracemalloc.py', 'PYMODULE'),
-  ('stringprep', '/usr/lib/python3.8/stringprep.py', 'PYMODULE')])
+  ('stringprep', '/usr/lib/python3.8/stringprep.py', 'PYMODULE'),
+  ('json', '/usr/lib/python3.8/json/__init__.py', 'PYMODULE'),
+  ('json.encoder', '/usr/lib/python3.8/json/encoder.py', 'PYMODULE'),
+  ('json.decoder', '/usr/lib/python3.8/json/decoder.py', 'PYMODULE'),
+  ('json.scanner', '/usr/lib/python3.8/json/scanner.py', 'PYMODULE')])

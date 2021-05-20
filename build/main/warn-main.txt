@@ -30,7 +30,7 @@ missing module named vms_lib - imported by platform (delayed, conditional, optio
 missing module named java - imported by platform (delayed)
 missing module named _winreg - imported by platform (delayed, optional)
 missing module named org - imported by pickle (optional)
-missing module named nt - imported by shutil (conditional), ntpath (optional), pathlib (conditional), ctypes (delayed, conditional), os (delayed, conditional, optional)
+missing module named nt - imported by os (delayed, conditional, optional), ntpath (optional), shutil (conditional), pathlib (conditional), ctypes (delayed, conditional)
 missing module named multiprocessing.get_context - imported by multiprocessing (top-level), multiprocessing.pool (top-level), multiprocessing.managers (top-level), multiprocessing.sharedctypes (top-level)
 missing module named multiprocessing.TimeoutError - imported by multiprocessing (top-level), multiprocessing.pool (top-level)
 missing module named multiprocessing.set_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)

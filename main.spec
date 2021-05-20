@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['/home/thepiguy/shard'],
+             pathex=['/home/thepiguy/shard/shard'],
              binaries=[],
              datas=[],
              hiddenimports=[],
