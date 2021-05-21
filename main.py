@@ -5,22 +5,23 @@ class files:
     INSTALLED_JSON = ''
 
 class colors:
-    GREEN_SUCCESS = '\033[1;32;40m'
-    RED_FAILURE = '\033[1;31;40m'
-    YELLOW_INFO = '\033[1;33;40m'
+    GREEN_SUCCESS = '\033[1;32m'
+    RED_FAILURE = '\033[1;31m'
+    YELLOW_INFO = '\033[1;33m'
     RESET = '\033[0;0;0m'
 
 
 def versionManagement(package):
-    currVersion = (package['version'])
 
     # TESTING STUFF
-    newVersion = (v for v in package['version'].split("."))
+    currVersion = int(''.join([v for v in package['version'].split(".")]))
+    newVersion = int(''.join([v for v in "0.0.1".split(".")]))
     
     print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
-          " Installed version: {}".format(currVersion))
-    print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
-          " LATEST version: {}".format(newVersion))
+          " Installed version: {}".format((package['version'])))
+    if newVersion > currVersion:
+        print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
+            " LATEST version: {}".format((package['version'])))
 
 
 
