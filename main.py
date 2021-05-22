@@ -1,5 +1,4 @@
-import sys
-import json
+import sys, os, json, ast
 
 class files:
     INSTALLED_JSON = ''
@@ -12,17 +11,35 @@ class colors:
     RESET = '\033[0;0;0m'
 
 
-def versionManagement(package):
-
-    # TESTING STUFF
-    currVersion = int(''.join([v for v in package['version'].split(".")]))
-    newVersion = int(''.join([v for v in "0.0.1".split(".")]))
+# Requires spark
+def getUpdates(package):
+    versions = os.popen("sudo spark -nv {}".format(package)).read()
+    versions = ast.literal_eval(versions)
     
-    print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
-          " Installed version: {}".format((package['version'])))
-    if newVersion > currVersion:
-        print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
-            " LATEST version: {}".format((package['version'])))
+    return versions
+
+def versionManagement(pkgName):
+
+    versions = getUpdates(pkgName)
+    
+    # TESTING STUFF
+    # currVersion = int(''.join([v for v in package['version'].split(".")]))
+    
+    
+    currVersion = versions["installed"]
+    latestVersion = versions["latest"]
+    
+    # Doing a check here as a failsafe
+    # checking for installed packages is done beforehand in function doStuff() which is faster
+    if currVersion != False:
+        print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
+            " Installed version: {}".format(currVersion))
+        if currVersion < latestVersion:
+            print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
+                " LATEST version: {}".format(latestVersion))
+    else:   
+        print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
+              " The package you searched for is not present")
 
 
 
@@ -32,7 +49,7 @@ def doStuff(package):
         data = json.load(f)
 
     if package in data['packages']:
-        versionManagement(data['packages'][package])
+        versionManagement(package)
     else:
         print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
               " The package you searched for is not present")
