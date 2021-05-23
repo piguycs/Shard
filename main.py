@@ -1,4 +1,5 @@
 import sys, os, json, ast
+from loader import Loader
 
 class files:
     INSTALLED_JSON = ''
@@ -13,14 +14,25 @@ class colors:
 
 # Requires spark
 def getUpdates(package):
-    versions = os.popen("sudo spark -nv {}".format(package)).read()
-    versions = ast.literal_eval(versions)
+    with Loader("Checking into the dimensions "):
+        versions = os.popen("sudo spark -nv {}".format(package)).read()
+        versions = ast.literal_eval(versions)
     
     return versions
 
 def parseVersion(versionNumber):
-    boolVerNum = bool(versionNumber)
-    return boolVerNum
+    realVersion = ''
+    for x in versionNumber:
+        if x.isdigit():
+            realVersion = realVersion + x
+
+    return float(realVersion)
+
+
+def update(pkgName):
+    if input("Do you wanna update? [y/N] ") in ['y','Y']:
+        os.system("sudo spark -i {}".format(pkgName))
+
 
 
 def versionManagement(pkgName):
@@ -31,17 +43,24 @@ def versionManagement(pkgName):
     # currVersion = int(''.join([v for v in package['version'].split(".")]))
     
     
-    currVersion = bool(versions["installed"])
-    latestVersion = bool(versions["latest"])
-    
+    currVersion = parseVersion(str(versions["installed"]))
+    latestVersion = parseVersion(str(versions["latest"]))
+
+    displayVersionCurr = versions["installed"]
+    displayVersionLatest = versions["latest"]
+
+
     # Doing a check here as a failsafe
     # checking for installed packages is done beforehand in function doStuff() which is faster
     if currVersion != False:
         print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
-            " Installed version: {}".format(currVersion))
+              " Installed version: {}".format(displayVersionCurr))
         if currVersion < latestVersion:
             print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
-                " LATEST version: {}".format(latestVersion))
+                  " LATEST version: {}".format(displayVersionLatest))
+            
+            update(pkgName)
+
     else:   
         print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
               " The package you searched for is not present")
