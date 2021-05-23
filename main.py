@@ -18,6 +18,11 @@ def getUpdates(package):
     
     return versions
 
+def parseVersion(versionNumber):
+    boolVerNum = bool(versionNumber)
+    return boolVerNum
+
+
 def versionManagement(pkgName):
 
     versions = getUpdates(pkgName)
@@ -26,8 +31,8 @@ def versionManagement(pkgName):
     # currVersion = int(''.join([v for v in package['version'].split(".")]))
     
     
-    currVersion = versions["installed"]
-    latestVersion = versions["latest"]
+    currVersion = bool(versions["installed"])
+    latestVersion = bool(versions["latest"])
     
     # Doing a check here as a failsafe
     # checking for installed packages is done beforehand in function doStuff() which is faster
@@ -44,15 +49,19 @@ def versionManagement(pkgName):
 
 
 
-def doStuff(package):
+def doStuff(package, update):
     with open(files.INSTALLED_JSON) as f:
         data = json.load(f)
 
     if package in data['packages']:
         versionManagement(package)
+    elif os.popen("which {}".format(package)).read():
+        print(colors.YELLOW_INFO + "[WARN]" + colors.RESET +
+              " The package you searched for present but not installed using spark")
     else:
         print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
-              " The package you searched for is not present")
+            " The package you searched for is not present")
+    
     
 
 def main(args):
@@ -77,7 +86,10 @@ def main(args):
                     print(colors.GREEN_SUCCESS + "[ARG: {}]".format(x) +
                         colors.RESET + " Bow wow, time to kill.sh".format(x))
                 
-                else: doStuff(x)
+                elif x == '-u':
+                    doStuff(x, True)
+                
+                else: doStuff(x, False)
 
 
 
