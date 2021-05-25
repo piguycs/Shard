@@ -96,7 +96,6 @@ def doStuff(package, update):
     
 
 def main(args):
-    
     if len(args) == 1:
         print("No args given")
     else:
@@ -130,7 +129,7 @@ if __name__ == '__main__':
     file_exists = False
     
     os.system("mkdir /tmp/shard") if not os.path.isdir("/tmp/shard") else None
-
+    
     try:
         with open('usrfiles/package_list.json') as f:
             files.INSTALLED_JSON = 'usrfiles/package_list.json'
@@ -143,4 +142,7 @@ if __name__ == '__main__':
         except IOError:
             print("SPARK IS NOT INSTALLED")
 
-    main(sys.argv) if file_exists else None
+    if os.geteuid() != 0:
+        print("Run this command with \'sudo\'")
+    else:
+        main(sys.argv) if file_exists else None
