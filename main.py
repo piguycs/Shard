@@ -81,47 +81,45 @@ def versionManagement(pkgName):
 
 
 def doStuff(package, update):
-    with open(files.INSTALLED_JSON) as f:
-        data = json.load(f)
+    if package != None:
+        with open(files.INSTALLED_JSON) as f:
+            data = json.load(f)
 
-    if package in data['packages']:
-        versionManagement(package)
-    elif os.popen("which {}".format(package)).read():
-        print(colors.YELLOW_INFO + "[WARN]" + colors.RESET +
-              " The package you searched for present but not installed using spark")
+        if package in data['packages']:
+            versionManagement(package)
+        elif os.popen("which {}".format(package)).read():
+            print(colors.YELLOW_INFO + "[WARN]" + colors.RESET +
+                " The package you searched for present but not installed using spark")
+        else:
+            print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
+                " The package you searched for is not present")
     else:
-        print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
-            " The package you searched for is not present")
+        print("shard shard real smooth")
     
     
 
 def main(args):
-    if len(args) == 1:
-        print("No args given")
+
+    if len(args) > 1:
+        package = args[-1] if args[-1] != "shard" else None
+        
+        if "-h" in args:
+            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-h") + 
+                colors.RESET + " Shard is an open source package manager for spark, which is an open source package installer")
+        elif "-v" in args:
+            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-v") +
+                colors.RESET + " My creator was tatching hentai so he forgot to give me a version")
+        elif "-dog" in args:
+            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-dog") +
+                colors.RESET + " Bow wow, time to kill.sh")
+        elif "-y" in args:
+            # TBD
+            doStuff(package, True)
+        else:
+            doStuff(package, False)
     else:
-        for x in args:
-            # checks if its not the command
-            if args.index(x) != 0:
-
-                # Argument for help    
-                if x == '-h':
-                    print(
-                        colors.GREEN_SUCCESS + "[ARG: {}]".format(x) + 
-                        colors.RESET + " Shard is an open source package manager for spark, which is an open source package installer")
-
-                elif x == '-v':
-                    print(colors.GREEN_SUCCESS + "[ARG: {}]".format(x) +
-                        colors.RESET + " My creator was tatching hentai so he forgot to give me a version".format(x))
-                
-                elif x == '-dog':
-                    print(colors.GREEN_SUCCESS + "[ARG: {}]".format(x) +
-                        colors.RESET + " Bow wow, time to kill.sh".format(x))
-                
-                elif x == '-u':
-                    doStuff(x, True)
-                
-                else: doStuff(x, False)
-         
+        print("No args given")
+     
 
 
 
