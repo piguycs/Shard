@@ -5,7 +5,7 @@ from shutil import get_terminal_size
 
 
 class Loader:
-    def __init__(self, desc="Loading...", end="Done!", timeout=0.1):
+    def __init__(self, desc="Loading...", end="", timeout=0.1):
         """
         A loader-like context manager
 

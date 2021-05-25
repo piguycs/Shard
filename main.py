@@ -1,6 +1,11 @@
 import sys, os, json, ast
 from loader import Loader
 
+class globalArgs:
+    DEBUG_MODE = False
+    USE_SPARK = True
+    UPDATE = False
+
 class files:
     INSTALLED_JSON = ''
 
@@ -14,7 +19,7 @@ class colors:
 
 # Requires spark
 def getUpdates(package):
-    with Loader("Checking into the dimensions "):
+    with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
         versions = os.popen("sudo spark -nv {}".format(package)).read()
         versions = ast.literal_eval(versions)
     
@@ -31,8 +36,15 @@ def parseVersion(versionNumber):
 
 def update(pkgName):
     if input("Do you wanna update? [y/N] ") in ['y','Y']:
-        os.system("sudo spark -i {}".format(pkgName))
-
+        binDir = os.popen("which {}".format(pkgName)).read()
+        if binDir != '':
+            os.system("sudo cp {} /tmp/shard".format(binDir))
+            try:
+                os.system("sudo spark -i {}".format(pkgName))
+            except:
+                os.system("sudo cp /tpm/shard {}".format(binDir))
+        else:
+            print("There seem to be no local files present for the package")
 
 
 def versionManagement(pkgName):
@@ -89,6 +101,7 @@ def main(args):
         print("No args given")
     else:
         for x in args:
+            # checks if its not the command
             if args.index(x) != 0:
 
                 # Argument for help    
@@ -109,11 +122,14 @@ def main(args):
                     doStuff(x, True)
                 
                 else: doStuff(x, False)
+         
 
 
 
 if __name__ == '__main__':
     file_exists = False
+    
+    os.system("mkdir /tmp/shard") if not os.path.isdir("/tmp/shard") else None
 
     try:
         with open('usrfiles/package_list.json') as f:
