@@ -53,23 +53,23 @@ def versionManagement(pkgName):
     
     # TESTING STUFF
     # currVersion = int(''.join([v for v in package['version'].split(".")]))
-    
-    
-    currVersion = parseVersion(str(versions["installed"]))
-    latestVersion = parseVersion(str(versions["latest"]))
 
-    displayVersionCurr = versions["installed"]
-    displayVersionLatest = versions["latest"]
+    currVersion = str(versions["installed"])
+    latestVersion = str(versions["latest"])
+
+    # not using these lolol
+    # displayVersionCurr = versions["installed"]
+    # displayVersionLatest = versions["latest"]
 
 
     # Doing a check here as a failsafe
     # checking for installed packages is done beforehand in function doStuff() which is faster
     if currVersion != False:
         print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
-              " Installed version: {}".format(displayVersionCurr))
-        if currVersion < latestVersion:
+              " Installed version: {}".format(currVersion))
+        if currVersion != latestVersion:
             print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
-                  " LATEST version: {}".format(displayVersionLatest))
+                  " LATEST version: {}".format(latestVersion))
             
             update(pkgName)
 
