@@ -25,6 +25,7 @@ def getUpdates(package):
     
     return versions
 
+# fml
 # redundent function
 def parseVersion(versionNumber):
     realVersion = ''
