@@ -36,6 +36,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Spark 0.0.2 (pre-release)"
+          title: "Spark 0.0.0 (dev-release)"
           files: |
             dist/main.py
