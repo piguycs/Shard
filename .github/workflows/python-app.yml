@@ -27,3 +27,23 @@ jobs:
     - name: Build
       run: |
         python3 -m PyInstaller --onefile main.py
+  
+  
+  -release:
+    name: Release
+    runs-on: "ubuntu-latest"
+
+    steps:
+      # ...
+      - name: "Build"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Development Build"
+          files: |
+            dist/main.py
