@@ -25,6 +25,7 @@ def getUpdates(package):
     
     return versions
 
+# redundent function which was kinda flawed logically
 def parseVersion(versionNumber):
     realVersion = ''
     for x in versionNumber:
