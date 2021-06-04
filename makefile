@@ -7,3 +7,8 @@ build: main.py
 
 test: /usr/bin/shard
 	@shard -h
+
+githubstuff: main.py loader.py
+	@echo Starting the build
+	@pyinstaller --onefime main.py
+
