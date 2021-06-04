@@ -29,6 +29,10 @@ jobs:
       - name: Build
         run: |
           python3 -m PyInstaller --onefile main.py
+
+      - name: "File Size"
+          run: |
+            ls -lh /dist/main
       
       # releases
       - uses: "marvinpinto/action-automatic-releases@latest"
