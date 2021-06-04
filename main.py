@@ -1,4 +1,8 @@
-import sys, os, json, ast
+from sys import argv
+from os import system, popen, geteuid, path
+from json import load
+from ast import literal_eval
+
 from loader import Loader
 
 class globalArgs:
@@ -20,8 +24,8 @@ class colors:
 # Requires spark
 def getUpdates(package):
     with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
-        versions = os.popen("sudo spark -nv {}".format(package)).read()
-        versions = ast.literal_eval(versions)
+        versions = popen("sudo spark -nv {}".format(package)).read()
+        versions = literal_eval(versions)
     
     return versions
 
@@ -38,13 +42,13 @@ def parseVersion(versionNumber):
 
 def update(pkgName):
     if input("Do you wanna update? [y/N] ") in ['y','Y']:
-        binDir = os.popen("which {}".format(pkgName)).read()
+        binDir = popen("which {}".format(pkgName)).read()
         if binDir != '':
-            os.system("sudo cp {} /tmp/shard".format(binDir))
+            system("sudo cp {} /tmp/shard".format(binDir))
             try:
-                os.system("sudo spark -i {}".format(pkgName))
+                system("sudo spark -i {}".format(pkgName))
             except:
-                os.system("sudo cp /tpm/shard {}".format(binDir))
+                system("sudo cp /tpm/shard {}".format(binDir))
         else:
             print("There seem to be no local files present for the package")
 
@@ -85,11 +89,11 @@ def versionManagement(pkgName):
 def doStuff(package, update):
     if package != None:
         with open(files.INSTALLED_JSON) as f:
-            data = json.load(f)
+            data = load(f)
 
         if package in data['packages']:
             versionManagement(package)
-        elif os.popen("which {}".format(package)).read():
+        elif popen("which {}".format(package)).read():
             print(colors.YELLOW_INFO + "[WARN]" + colors.RESET +
                 " The package you searched for present but not installed using spark")
         else:
@@ -128,7 +132,7 @@ def main(args):
 if __name__ == '__main__':
     file_exists = False
     
-    os.system("mkdir /tmp/shard") if not os.path.isdir("/tmp/shard") else None
+    system("mkdir /tmp/shard") if not path.isdir("/tmp/shard") else None
     
     try:
         with open('usrfiles/package_list.json') as f:
@@ -142,7 +146,7 @@ if __name__ == '__main__':
         except IOError:
             print("SPARK IS NOT INSTALLED")
 
-    if os.geteuid() != 0:
+    if geteuid() != 0:
         print("Run this command with \'sudo\'")
     else:
-        main(sys.argv) if file_exists else None
+        main(argv) if file_exists else None
