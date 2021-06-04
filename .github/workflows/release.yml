@@ -29,13 +29,6 @@ jobs:
       - name: Build
         run: |
           python3 -m PyInstaller --onefile main.py
-      
-      # releases
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Spark 0.0.0 (dev-release)"
-          files: |
-            dist/main.py
+          echo "PATHS HAHA"
+          pwd
+          ls
