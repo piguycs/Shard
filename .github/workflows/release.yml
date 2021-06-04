@@ -30,7 +30,7 @@ jobs:
         run: |
           python3 -m PyInstaller --onefile main.py
 
-      - name: "File Size"
+      - name: Size
           run: |
             ls -lh /dist/main
       
