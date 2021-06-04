@@ -38,4 +38,4 @@ jobs:
           prerelease: false
           title: "Spark 0.0.0 (dev-release)"
           files: |
-            dist/main.py
+            dist/main
