@@ -1,3 +1,8 @@
 {
-    "latest": "0.0.1"
+    "checkUpdates": 1,
+    "installed": "0.0.1",
+    "latest": "0.0.1",
+    "updateChannel": "dev",
+    "aWayToCheckVersForDevReleasesWithNoVersions": ""
+
 }

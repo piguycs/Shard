@@ -6,14 +6,19 @@ from requests import get, post
 
 from loader import Loader
 
+class configs:
+    CHECK_UPDATES = True
+    THEME_FILE = 'tbd'
+
 class globalArgs:
     DEBUG_MODE = False
     USE_SPARK = True
     UPDATE = False
 
 class files:
-    INSTALLED_JSON = ''
+    INSTALLED_JSON = '/usr/spark/installed.json'
     VERSIONS = '/usr/shard/versions/versions.json'
+    CFG = '/usr/shard/config.json'
 
 class colors:
     GREEN_SUCCESS = '\033[1;32m'
@@ -141,7 +146,19 @@ def versions():
 
 
 
+
+def loadConfigs():
+    with open(files.VERSIONS) as f:
+        configs.CHECK_UPDATES = load(f)["checkUpdates"]
+
+
 if __name__ == '__main__':
+    # loads configs
+    loadConfigs()
+
+    print(configs.CHECK_UPDATES)
+    
+    
     file_exists = False
     
     system("mkdir /tmp/shard") if not path.isdir("/tmp/shard") else None
