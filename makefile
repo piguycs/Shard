@@ -3,6 +3,7 @@ build: main.py
 	clear
 	@sudo ln -sf `pwd`/dist/main /usr/bin/shard
 	@chmod +x /usr/bin/shard
+	@sudo cp versions.json /usr/shard/versions/versions.json
 
 
 test: /usr/bin/shard

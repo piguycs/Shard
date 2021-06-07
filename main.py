@@ -2,6 +2,7 @@ from sys import argv
 from os import system, popen, geteuid, path
 from json import load
 from ast import literal_eval
+from requests import get, post
 
 from loader import Loader
 
@@ -12,6 +13,7 @@ class globalArgs:
 
 class files:
     INSTALLED_JSON = ''
+    VERSIONS = '/usr/shard/versions/versions.json'
 
 class colors:
     GREEN_SUCCESS = '\033[1;32m'
@@ -21,7 +23,6 @@ class colors:
     RESET = '\033[0;0;0m'
 
 
-# testing thing
 # Requires spark
 def getUpdates(package):
     with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
@@ -128,6 +129,16 @@ def main(args):
         print("No args given")
      
 
+def versions():
+    version = get("https://api.github.com/repos/RocKing1001/Shard/releases/latest").json()
+
+    try:
+        with open(files.VERSIONS) as f:
+            version = load(f)["latest"]
+            return version
+    except IOError:
+        return 0
+
 
 
 if __name__ == '__main__':
@@ -146,6 +157,9 @@ if __name__ == '__main__':
                 file_exists = True
         except IOError:
             print("SPARK IS NOT INSTALLED")
+
+    version = versions()
+    print(version)
 
     if geteuid() != 0:
         print("Run this command with \'sudo\'")
