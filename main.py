@@ -21,6 +21,7 @@ class colors:
     RESET = '\033[0;0;0m'
 
 
+# testing thing
 # Requires spark
 def getUpdates(package):
     with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
