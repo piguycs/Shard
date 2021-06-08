@@ -32,7 +32,7 @@ if __name__ == "__main__":
     sparkVersions(1)     # Creates a version file if not present
     if parseVersion(latestVer) > parseVersion(getCurrVer()):
         sparkurl = get(url).json()["assets"][0]["browser_download_url"]
-        run("wget -q -O spark {}".format(sparkurl))
+        run("wget -q -O spark.py {}".format(sparkurl))
 
         with open("versions.spark", "w") as f:
             f.write(dumps('{"current": "{}"}'.format(latestVer), indent=4, sort_keys=True))

@@ -4,6 +4,7 @@ from json import load
 from ast import literal_eval
 from requests import get, post
 
+from spark import install
 from loader import Loader
 
 class configs:
@@ -53,7 +54,8 @@ def update(pkgName):
         if binDir != '':
             system("sudo cp {} /tmp/shard".format(binDir))
             try:
-                system("sudo spark -i {}".format(pkgName))
+                # system("sudo spark -i {}".format(pkgName))
+                install(pkgName)
             except:
                 system("sudo cp /tpm/shard {}".format(binDir))
         else:
