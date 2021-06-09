@@ -11,5 +11,5 @@ test: /usr/bin/shard
 
 githubstuff: main.py loader.py
 	@echo Starting the build
-	@pyinstaller --onefime main.py
+	@pyinstaller --onefile main.py
 
