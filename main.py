@@ -4,7 +4,7 @@ from json import load
 from ast import literal_eval
 from requests import get, post
 
-from spark import install
+from spark import install, getPkg
 from loader import Loader
 from sparkModule import getSpark
 
@@ -33,7 +33,7 @@ class colors:
 # Requires spark
 def getUpdates(package):
     with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
-        versions = popen("sudo spark -nv {}".format(package)).read()
+        versions = str(getPkg(package))
         versions = literal_eval(versions)
     
     return versions
@@ -156,7 +156,7 @@ def loadConfigs():
 
 
 if __name__ == '__main__':
-    getSpark()
+    # getSpark()
 
     # loads configs
     loadConfigs()
@@ -169,16 +169,11 @@ if __name__ == '__main__':
     system("mkdir /tmp/shard") if not path.isdir("/tmp/shard") else None
     
     try:
-        with open('usrfiles/package_list.json') as f:
-            files.INSTALLED_JSON = 'usrfiles/package_list.json'
+        with open('/usr/spark/installed.json') as f:
+            files.INSTALLED_JSON = '/usr/spark/installed.json'
             file_exists = True
     except IOError:
-        try:
-            with open('/usr/spark/installed.json') as f:
-                files.INSTALLED_JSON = '/usr/spark/installed.json'
-                file_exists = True
-        except IOError:
-            print("SPARK IS NOT INSTALLED")
+        print("SPARK IS NOT INSTALLED")
 
     version = versions()
     print(version)

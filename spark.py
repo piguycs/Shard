@@ -821,6 +821,14 @@ def update_spark():
   os.system("ln -sf /usr/spark/spark /bin/spark")
 
 
+# SHARD MODIFICATION
+def getPkg(pkg):
+  return({
+      "installed": get_local_version(pkg),
+      "latest": get_version(pkg)
+  })
+
+
 def main(*argv): 
   # Check arguments
   argv=argv[0]
@@ -881,10 +889,7 @@ def main(*argv):
     list_versions(argv[-1])    
   elif "-nv" in argv:
     update(silent=True)
-    print({
-      "installed":get_local_version(argv[-1]),
-      "latest":get_version(argv[-1])
-      })
+    print(getPkg(argv[-1]))
   else:
     help()
 
