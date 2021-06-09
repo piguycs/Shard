@@ -32,7 +32,7 @@ class getSpark:
     def __init__():
         sparkVersions(1)     # Creates a version file if not present
         if parseVersion(latestVer) > parseVersion(getCurrVer()):
-            sparkurl = get(url).json()["assets"][0]["browser_download_url"]
+            sparkurl = get(url).json()["assets"][1]["browser_download_url"]
             with Loader("Installing latest version of spark  ", "Installing latest version of spark   ✔"):
                 run("wget -q -O spark.py {}".format(sparkurl))
 
