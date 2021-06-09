@@ -9,7 +9,7 @@ To check for a package do:
 ```bash
 sudo shard {package}
 ```
-Shard is meant to be working on its own but doe to the state of the app right now, it is advisable to use spark. 
+Shard is meant to be working on its own but due to the state of the app right now, it is advisable to use spark. 
 
 
 ## What does "no garbage" mean?
