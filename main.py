@@ -1,10 +1,10 @@
 from sys import argv
 from os import system, popen, geteuid, path
 from json import load
-from ast import literal_eval
 from requests import get, post
 
 from spark import install, getPkg
+from spark import update as updatedim
 from loader import Loader
 from sparkModule import getSpark
 
@@ -34,8 +34,8 @@ class colors:
 # Requires spark
 def getUpdates(package):
     with Loader("Checking into the dimensions ", "Checking into the dimensions ✔"):
-        versions = str(getPkg(package))
-        versions = literal_eval(versions)
+        versions = getPkg(package)
+        print(versions)
     
     return versions
 
@@ -61,7 +61,9 @@ def update(pkgName):
             except:
                 system("sudo cp /tpm/shard {}".format(binDir))
         else:
-            print("There seem to be no local files present for the package")
+            warnFiles = input("There seem to be no local files present for the package, do you stll wanna install [y/N]")
+            if warnFiles in ['y','Y']:
+                install(pkgName)
 
 
 def versionManagement(pkgName):
@@ -89,6 +91,7 @@ def versionManagement(pkgName):
                   " LATEST version: {}".format(latestVersion))
             
             update(pkgName)
+            updatedim()
 
     else:   
         print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
@@ -162,7 +165,7 @@ if __name__ == '__main__':
     # loads configs
     loadConfigs()
 
-    print(configs.CHECK_UPDATES)
+    # print(configs.CHECK_UPDATES)
     
     
     file_exists = False
@@ -177,7 +180,6 @@ if __name__ == '__main__':
         print("SPARK IS NOT INSTALLED")
 
     version = versions()
-    print(version)
 
     if geteuid() != 0:
         print("Run this command with \'sudo\'")
