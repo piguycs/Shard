@@ -6,6 +6,7 @@ from requests import get, post
 
 from spark import install
 from loader import Loader
+from sparkModule import getSpark
 
 class configs:
     CHECK_UPDATES = True
@@ -155,6 +156,8 @@ def loadConfigs():
 
 
 if __name__ == '__main__':
+    getSpark()
+
     # loads configs
     loadConfigs()
 

@@ -30,6 +30,7 @@ jobs:
         run: |
           python3 -m PyInstaller --onefile main.py
           ls -lh dist/main
+          mv spark.py spark(minimal).py
 
       # releases
       - uses: "marvinpinto/action-automatic-releases@latest"
@@ -40,3 +41,4 @@ jobs:
           title: "Shard 0.0.0 (dev-release)"
           files: |
             dist/main
+            spark(minimal).py
