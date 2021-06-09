@@ -8,9 +8,10 @@ from spark import install, getPkg
 from loader import Loader
 from sparkModule import getSpark
 
+# from styles/themes.py import colours
+
 class configs:
     CHECK_UPDATES = True
-    THEME_FILE = 'tbd'
 
 class globalArgs:
     DEBUG_MODE = False
