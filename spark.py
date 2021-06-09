@@ -198,7 +198,7 @@ def hex_to_rgb(hex):
 
 
 
-# *boss music plays*
+# *gornio's theme plays*
 
 #
 # ==============================================
