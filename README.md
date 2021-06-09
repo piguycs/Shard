@@ -13,4 +13,4 @@ Shard is meant to be working on its own but due to the state of the app right no
 
 
 ## What does "no garbage" mean?
-Glad you asked, it means it wont spount unnecessary nonsense at your screen with logs you dont need. They will be saved in a logfile and if they are really needed shard will parse them to be as simple as they can be. However because spark is in-dev and thats what I use to install and modify packages, logs are enabled for now.
+Glad you asked, it means it wont spout unnecessary nonsense at your screen with logs you dont need. They will be saved in a logfile and if they are really needed shard will parse them to be as simple as they can be. However because spark is in-dev and thats what I use to install and modify packages, logs are enabled for now.
