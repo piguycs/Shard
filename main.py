@@ -3,8 +3,7 @@ from os import system, popen, geteuid, path
 from json import load
 from requests import get, post
 
-from spark import install, getPkg
-from spark import update as updatedim
+from spark import install, getPkg, update as updatedim
 from loader import Loader
 from sparkModule import getSpark
 
