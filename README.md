@@ -9,7 +9,10 @@ To check for a package do:
 ```bash
 sudo shard {package}
 ```
-Shard is meant to be working on its own but due to the state of the app right now, it is advisable to use spark. 
+Shard is meant to be working on its own but due to the state of the app right now, it is advisable to use [spark](https://github.com/HUSKI3/Spark) 
+That way you can run commands using spark itself incase shard breaks.
+
+NOTE: spark is also wip so that can break aswell so good luck!
 
 
 ## What does "no garbage" mean?
