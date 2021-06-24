@@ -22,7 +22,7 @@ class files:
     VERSIONS = '/usr/shard/versions/versions.json'
     CFG = '/usr/shard/config.json'
 
-class colors:
+class colours:
     GREEN_SUCCESS = '\033[1;32m'
     RED_FAILURE = '\033[1;31m'
     YELLOW_INFO = '\033[1;33m'
@@ -83,17 +83,17 @@ def versionManagement(pkgName):
     # Doing a check here as a failsafe
     # checking for installed packages is done beforehand in function doStuff() which is faster
     if currVersion != False:
-        print(colors.GREEN_SUCCESS + "[FOUND]" + colors.RESET +
+        print(colours.GREEN_SUCCESS + "[FOUND]" + colours.RESET +
               " Installed version: {}".format(currVersion))
         if currVersion != latestVersion:
-            print(colors.YELLOW_INFO + "[UPDATE]" + colors.RESET +
+            print(colours.YELLOW_INFO + "[UPDATE]" + colours.RESET +
                   " LATEST version: {}".format(latestVersion))
             
             update(pkgName)
             updatedim()
 
     else:   
-        print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
+        print(colours.RED_FAILURE + "[NOT FOUND]" + colours.RESET +
               " The package you searched for is not present")
 
 
@@ -107,10 +107,10 @@ def doStuff(package, update):
         if package in data['packages']:
             versionManagement(package)
         elif popen("which {}".format(package)).read():
-            print(colors.YELLOW_INFO + "[WARN]" + colors.RESET +
+            print(colours.YELLOW_INFO + "[WARN]" + colours.RESET +
                 " The package you searched for present but not installed using spark")
         else:
-            print(colors.RED_FAILURE + "[NOT FOUND]" + colors.RESET +
+            print(colours.RED_FAILURE + "[NOT FOUND]" + colours.RESET +
                 " The package you searched for is not present")
     else:
         print("shard shard real smooth")
@@ -123,14 +123,14 @@ def main(args):
         package = args[-1] if args[-1] != "shard" else None
         
         if "-h" in args:
-            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-h") + 
-                colors.RESET + " Shard is an open source package manager for spark, which is an open source package installer")
+            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-h") + 
+                colours.RESET + " Shard is an open source package manager for spark, which is an open source package installer")
         elif "-v" in args:
-            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-v") +
-                colors.RESET + " My creator was tatching hentai so he forgot to give me a version")
+            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-v") +
+                colours.RESET + " My creator was tatching hentai so he forgot to give me a version")
         elif "-dog" in args:
-            print(colors.GREEN_SUCCESS + "[ARG: {}]".format("-dog") +
-                colors.RESET + " Bow wow, time to kill.sh")
+            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-dog") +
+                colours.RESET + " Bow wow, time to kill.sh")
         elif "-y" in args:
             # TBD
             doStuff(package, True)
