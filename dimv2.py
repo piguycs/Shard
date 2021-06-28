@@ -12,5 +12,5 @@ for x in dims["repos"]:
     repos.append(x[1])
 print(repos)
 for x in repos:
-    print(get(x+"/packs").json()) if x != "none" else None
+    print(get(x+"/packs").json() if x != "none" else "None")
 # print(get(repos[0]+"/packs").json())
