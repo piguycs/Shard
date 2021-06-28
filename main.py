@@ -25,13 +25,6 @@ class files:
     VERSIONS = '/usr/shard/versions/versions.json'
     CFG = '/usr/shard/config.json'
 
-class colours:
-    GREEN_SUCCESS = '\033[1;32m'
-    RED_FAILURE = '\033[1;31m'
-    YELLOW_INFO = '\033[1;33m'
-    GREY_INFO = '\033[30;47m'
-    RESET = '\033[0;0;0m'
-
 
 
 # Requires spark
@@ -95,8 +88,7 @@ def versionManagement(pkgName):
             updatedim()
 
     else:   
-        print(colours.RED_FAILURE + "[NOT FOUND]" + colours.RESET +
-              " The package you searched for is not present")
+        print(out("[NOT FOUND]", 2) + " The package you searched for is not present")
 
 
 
@@ -109,11 +101,9 @@ def doStuff(package, update):
         if package in data['packages']:
             versionManagement(package)
         elif popen("which {}".format(package)).read():
-            print(colours.YELLOW_INFO + "[WARN]" + colours.RESET +
-                " The package you searched for present but not installed using spark")
+            print(out("[WARN]", 3) + " The package you searched for present but not installed using spark")
         else:
-            print(colours.RED_FAILURE + "[NOT FOUND]" + colours.RESET +
-                " The package you searched for is not present")
+            print(out("[NOT FOUND]", 2) + " The package you searched for is not present")
     else:
         print("shard shard real smooth")
     
@@ -125,14 +115,11 @@ def main(args):
         package = args[-1] if args[-1] != "shard" else None
         
         if "-h" in args:
-            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-h") + 
-                colours.RESET + " Shard is an open source package manager for spark, which is an open source package installer")
+            print(out("[ARG: {}]".format("-h"), 1) + " Shard is an open source package manager for spark, which is an open source package installer")
         elif "-v" in args:
-            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-v") +
-                colours.RESET + " My creator was tatching hentai so he forgot to give me a version")
+            print(out("[ARG: {}]".format("-v"), 1) + " My creator was tatching hentai so he forgot to give me a version")
         elif "-dog" in args:
-            print(colours.GREEN_SUCCESS + "[ARG: {}]".format("-dog") +
-                colours.RESET + " Bow wow, time to kill.sh")
+            print(out("[ARG: {}]".format("-dog"), 1) + " Bow wow, time to kill.sh")
         elif "-y" in args:
             # TBD
             doStuff(package, True)
