@@ -1,0 +1,9 @@
+{
+   "name": "dimensions.json",
+   "dimver": "v2",
+   "repos": [
+       ["Spark Official", "none"],
+       ["Spark Testing", "https://sparkofficial-1.ubuntulove2004.repl.co"]
+   ]
+   
+}
