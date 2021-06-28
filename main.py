@@ -6,9 +6,12 @@ from requests import get, post
 from spark import install, getPkg, update as updatedim
 from loader import Loader
 from sparkModule import getSpark
+from output import out
 
 # from styles/themes.py import colours
 
+
+# IDK why I did this but welkom to classitown
 class configs:
     CHECK_UPDATES = True
 
@@ -28,6 +31,7 @@ class colours:
     YELLOW_INFO = '\033[1;33m'
     GREY_INFO = '\033[30;47m'
     RESET = '\033[0;0;0m'
+
 
 
 # Requires spark
@@ -83,11 +87,9 @@ def versionManagement(pkgName):
     # Doing a check here as a failsafe
     # checking for installed packages is done beforehand in function doStuff() which is faster
     if currVersion != False:
-        print(colours.GREEN_SUCCESS + "[FOUND]" + colours.RESET +
-              " Installed version: {}".format(currVersion))
+        print(out("[FOUND]", 1) + " Installed version: {}".format(currVersion))
         if currVersion != latestVersion:
-            print(colours.YELLOW_INFO + "[UPDATE]" + colours.RESET +
-                  " LATEST version: {}".format(latestVersion))
+            print(out("[UPDATE]", 3) + " LATEST version: {}".format(latestVersion))
             
             update(pkgName)
             updatedim()
