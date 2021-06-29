@@ -1,16 +1,12 @@
 #!/usr/bin/python3
 
-from json import load
 from requests import get
-import ezjson
+from ezjson import setCfg as conf
 
-repos = []
-dims = ezjson.getfile("dimensions.json")
+dims = conf("dimensions.json")
 
-for x in dims["repos"]:
-    print(x[0] +": "+ x[1])
-    repos.append(x[1])
-print(repos)
+repos = dims.getAll("repos", 1)
+
 for x in repos:
     print(get(x+"/packs").json() if x != "none" else "None")
 # print(get(repos[0]+"/packs").json())
