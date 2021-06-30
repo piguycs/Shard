@@ -21,8 +21,10 @@ class setCfg():
             for x in self.cfg[field]:
                 if xindex:
                     allfields.append(x[xindex])
+                elif xindex == 0:
+                    allfields.append(x[0])
                 else:
-                    allfields.append(x)
+                    allfields.append(x[0])
             return allfields
         except IndexError:
             return None

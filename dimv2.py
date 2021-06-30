@@ -6,10 +6,14 @@ from output import out
 
 dims = conf("dimensions.json")
 
+# Gets all the items from the array, index one coz 2d array
+# so these are all the repo url's
 repos = dims.getAll("repos", 1)
+# and this will get repo names
+reponames = dims.getAll("repos", 0)
 
-packageList = []
 for x in repos:
+    packageList = [reponames[repos.index(x)]]
     if x != "none":
         packages = get(x+"/packs").json()
         for y in packages:
@@ -19,5 +23,8 @@ for x in repos:
             except KeyError:
                 print(y["name"] + " --> ERR: URL TAG MISSING")
 
-if "pain" in packageList:
-    print(out("[FOUND]", 1) + out("pain in repo", 4))
+find = "pain"
+
+
+if find in packageList:
+    print(out("[FOUND]", 1) + f' Package {find} in {packageList[0]}')
